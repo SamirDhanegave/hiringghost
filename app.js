@@ -3,7 +3,7 @@
  * Vanilla JavaScript implementation for high performance and zero external framework overhead.
  */
 
-document.addEventListener('DOMContentLoaded', () => {
+function initApp() {
   // --- DOM Elements ---
   const resumeInput = document.getElementById('resume-input');
   const jobInput = document.getElementById('job-input');
@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const analyzeBtnIcon = document.getElementById('analyze-btn-icon');
   const analyzeBtnSpinner = document.getElementById('analyze-btn-spinner');
   const sampleBtn = document.getElementById('sample-btn');
+  const emptySampleBtn = document.getElementById('empty-sample-btn');
   const clearBtn = document.getElementById('clear-btn');
   const uploadResumeCta = document.getElementById('upload-resume-cta');
 
@@ -679,17 +680,41 @@ Qualifications:
 
   analyzeBtn.addEventListener('click', handleAnalyze);
 
-  sampleBtn.addEventListener('click', () => {
+  function loadSampleData() {
+    // Clear any previous file badges/inputs
+    if (resumeFileInput) resumeFileInput.value = '';
+    if (jobFileInput) jobFileInput.value = '';
+    if (resumeFileBadge) resumeFileBadge.classList.add('hidden');
+    if (jobFileBadge) jobFileBadge.classList.add('hidden');
+
+    // Populate the textareas
     resumeInput.value = sampleResume;
     jobInput.value = sampleJobDescription;
     updateCounts();
     hideError();
-    // Subtle bounce on the analyze button to guide user
-    analyzeBtn.classList.add('ring-4', 'ring-blue-200');
-    setTimeout(() => {
-      analyzeBtn.classList.remove('ring-4', 'ring-blue-200');
-    }, 800);
-  });
+
+    // Visual button feedback
+    if (sampleBtn) {
+      sampleBtn.classList.add('ring-2', 'ring-blue-400', 'bg-blue-50');
+      setTimeout(() => {
+        sampleBtn.classList.remove('ring-2', 'ring-blue-400', 'bg-blue-50');
+      }, 700);
+    }
+
+    // Immediately trigger analysis so the user sees the complete sample analysis results
+    handleAnalyze();
+  }
+
+  // Expose globally for resilient access
+  window.loadSampleData = loadSampleData;
+
+  if (sampleBtn) {
+    sampleBtn.addEventListener('click', loadSampleData);
+  }
+
+  if (emptySampleBtn) {
+    emptySampleBtn.addEventListener('click', loadSampleData);
+  }
 
   clearBtn.addEventListener('click', () => {
     resumeInput.value = '';
@@ -706,4 +731,11 @@ Qualifications:
 
   // Initial count update
   updateCounts();
-});
+}
+
+// Guarantee execution whether DOM is already interactive/complete or still loading
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initApp);
+} else {
+  initApp();
+}
