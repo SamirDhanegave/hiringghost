@@ -1,0 +1,6 @@
+{
+  "name": "Resume Match",
+  "description": "Know how your resume matches the job. Compare your resume with a job description to discover missing keywords and improve resume bullets.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
