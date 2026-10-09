@@ -1,14 +1,14 @@
-# Resume Match
+# Hiring Ghost
 
 > Know how your resume matches the job. Compare your resume with a job description to discover missing keywords and improve your resume bullets.
 
-Resume Match is a focused, production-quality web application built for job seekers. Paste your resume and a target job description, click one button, and immediately receive an objective match score, missing keywords presented as chips, and three suggested resume bullet rewrites grounded in your real experience.
+Hiring Ghost is a focused, production-quality web application built for job seekers. Paste your resume and a target job description, click one button, and immediately receive an objective match score, missing keywords presented as chips, and three suggested resume bullet rewrites grounded in your real experience.
 
 ---
 
 ## Features
 
-- **Resume Match Score (0–100%)**: Instant textual alignment percentage with an animated horizontal progress bar and clear alignment bands (Significant Gap, Moderate, Strong, High Match).
+- **Hiring Ghost Score (0–100%)**: Instant textual alignment percentage with an animated horizontal progress bar and clear alignment bands (Significant Gap, Moderate, Strong, High Match).
 - **PDF & Word Document Upload**: Upload `.pdf`, `.docx`, `.doc`, or `.txt` files directly via click or drag-and-drop. Text is extracted client-side in-memory without uploading your file to any server storage.
 - **Missing Keywords Chips**: High-signal technologies, competencies, and qualifications identified in the job description that were not clearly found in your resume.
 - **Three Grounded Bullet Rewrites**: Concrete, truthful resume improvements that enhance clarity, relevance, and action verbs without fabricating achievements, metrics, or technologies.
